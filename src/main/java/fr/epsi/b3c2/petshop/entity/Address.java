@@ -1,7 +1,7 @@
 package fr.epsi.b3c2.petshop.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.Table;
 
 import java.util.Date;
 @Entity
@@ -24,6 +24,19 @@ public class Address {
     @Column(name = "city")
     private String city;
 
+    @OneToOne(mappedBy = "address")
+    private PetStore store;
+
+    public Address(String number, String street,String city ,String zip  ) {
+        this.number = number;
+        this.street = street;
+        this.zip = zip;
+        this.city = city;
+    }
+
+    public Address() {
+    }
+
     public String getNumber() {
         return number;
     }
@@ -44,23 +57,20 @@ public class Address {
         return id;
     }
 
-    public void setNumber() {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public void setStreet() {
+    public void setStreet(String street) {
         this.street = street;
     }
 
-    public void setZip() {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public void setCity() {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

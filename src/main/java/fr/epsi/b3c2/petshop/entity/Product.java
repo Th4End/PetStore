@@ -8,7 +8,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "code")
     private String code;
@@ -21,8 +21,11 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProdType type;
 
+    @ManyToOne()
+    @JoinColumn(name = "PetStore.id")
+    private PetStore store;
 
-    public int getId(){
+    public Long getId(){
         return this.id;
     }
 
@@ -42,23 +45,28 @@ public class Product {
         return this.type;
     }
 
-    public void setId(){
-        this.id = id;
+    public PetStore getStore(){
+        return this.store;
     }
+
 
     public void setCode(){
         this.code = code;
     }
 
-    public void setLabel(){
+    public void setLabel(String nourriturePourChat){
         this.label = label;
     }
 
-    public void setPrice(){
+    public void setPrice(double v){
         this.price = price;
     }
 
-    public void setType(){
+    public void setType(ProdType food){
         this.type = type;
+    }
+
+    public void setStore(){
+        this.store = store;
     }
 }
