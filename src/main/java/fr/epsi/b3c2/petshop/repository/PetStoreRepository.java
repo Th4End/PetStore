@@ -6,9 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PetStoreRepository extends JpaRepository<PetStore, Long> {
-    PetStore findByName(String name);
-
-    PetStore findById(long id);
-
-    PetStore findByManagerName(String managerName);
 }

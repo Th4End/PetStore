@@ -5,7 +5,7 @@ import jakarta.persistence.Table;
 
 import java.util.Date;
 @Entity
-@Table(name = "Address")
+@Table(name = "address")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Address {
     @Column(name = "city")
     private String city;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
     private PetStore store;
 
     public Address(String number, String street,String city ,String zip  ) {

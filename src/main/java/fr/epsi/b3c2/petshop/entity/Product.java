@@ -3,7 +3,7 @@ package fr.epsi.b3c2.petshop.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product") // Garde le nom de la table
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,19 +12,22 @@ public class Product {
 
     @Column(name = "code")
     private String code;
+
     @Column(name = "label")
     private String label;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private double price;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private ProdType type;
 
-    @ManyToOne()
-    @JoinColumn(name = "PetStore.id")
+    @ManyToOne
+    @JoinColumn(name = "petstore_id")
     private PetStore store;
 
+    // Getters
     public Long getId(){
         return this.id;
     }
@@ -49,24 +52,24 @@ public class Product {
         return this.store;
     }
 
-
-    public void setCode(){
+    // Setters
+    public void setCode(String code){
         this.code = code;
     }
 
-    public void setLabel(String nourriturePourChat){
+    public void setLabel(String label){
         this.label = label;
     }
 
-    public void setPrice(double v){
+    public void setPrice(double price){
         this.price = price;
     }
 
-    public void setType(ProdType food){
+    public void setType(ProdType type){
         this.type = type;
     }
 
-    public void setStore(){
+    public void setStore(PetStore store){
         this.store = store;
     }
 }

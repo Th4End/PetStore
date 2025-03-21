@@ -1,33 +1,39 @@
 package fr.epsi.b3c2.petshop.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
+//Représente l'entité petstore dans la base de donnée
 @Entity
-@Table(name = "PetStore")
+@Table(name = "petstore")
 public class PetStore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "managerName")
+    @Column(name = "managerName", nullable = false)
     private String managerName;
 
-    @OneToMany(mappedBy = "petStore")
+    @OneToMany(mappedBy = "petstore")
     private List<Animal> animals;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "petStore")
+    @ManyToMany()
+    @JoinTable(
+            name = "petstore_product",
+            joinColumns = @JoinColumn(name = "petstore_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products;
-// Getters
+
+    // Getters
     public Long getId() {
         return id;
     }
@@ -52,10 +58,14 @@ public class PetStore {
         return products;
     }
 
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
     public void setName(String name) {
         this.name = name;
     }
-// Setters
+
     public void setManagerName(String managerName) {
         this.managerName = managerName;
     }

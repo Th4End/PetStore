@@ -1,21 +1,19 @@
 package fr.epsi.b3c2.petshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "animal_id")
+@DiscriminatorValue("CAT")
 public class Cat extends Animal {
 
+    @Column(name = "chipid")
     private String chipId;
 
     public String getChipId() {
         return chipId;
     }
 
-    public void setChipId() {
+    public void setChipId(String number) {
         this.chipId = chipId;
     }
 }
