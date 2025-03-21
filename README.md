@@ -31,9 +31,7 @@ Le modèle de données utilisé est un modèle **MERISE**.
     ```properties
     spring.datasource.url=jdbc:mariadb://localhost:3306/petstore
     ```
-
-![img_1.png](img_1.png)
-
+   
 ## Prérequis de Connaissances
 
 Avant de commencer ce projet, il est nécessaire d'avoir des connaissances dans les domaines suivants :
